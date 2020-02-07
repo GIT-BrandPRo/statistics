@@ -7,9 +7,13 @@ import {All, Events, AllEvents} from "./eventFilters";
 import {Today, Yesterday, Week, Month, Year, Quarter} from "./dateFilters";
 import React, {Component} from 'react';
 
+const {MonthPicker, RangePicker, WeekPicker} = DatePicker;
+
+function onChange(date, dateString) {
+    console.log(date, dateString);
+}
 
 export default class Main extends Component {
-
     render() {
         return (
             <Router>
@@ -26,8 +30,9 @@ export default class Main extends Component {
                         <Button style={{margin: 10}} href="/Quarter">КВАРТАЛ</Button>
                     </div>
                     <div style={{display: "inline-flex"}}>
-                        <DatePicker/>
-                        {window.location.href==="http://localhost:3000/Week" ? <DatePicker/> : null}
+
+                        {window.location.href === "http://localhost:3000/Week" ? <RangePicker onChange={onChange}/> :
+                            <DatePicker/>}
                         <Button style={{margin: 10}} variant="link">Reload</Button>
                         <Button style={{margin: 10}} variant="link">Export XLS</Button>
                     </div>

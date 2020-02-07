@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ec10fda4-2d49-4eb9-8de3-2e8012f8d3f5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Graphs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Graphs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dateFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dateFilters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/eventFilters.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/eventFilters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/DatePicker.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580985057048</updated>
-      <workItem from="1580985058387" duration="26211000" />
+      <workItem from="1580985058387" duration="26771000" />
     </task>
     <task id="LOCAL-00001" summary="app structure implemented">
       <created>1580998813971</created>
@@ -87,7 +81,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580998813971</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="single/double datePicker implemented">
+      <created>1581071603727</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1581071603727</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,6 +107,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="app structure implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="app structure implemented" />
+    <MESSAGE value="single/double datePicker implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="single/double datePicker implemented" />
   </component>
 </project>
