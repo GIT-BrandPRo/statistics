@@ -1,14 +1,13 @@
-import {Col, Container, Row} from "react-bootstrap";
 import React from "react";
-
+import {Row, Col} from 'antd';
 
 export default class Graphs extends React.Component {
 
     render() {
         return (
-            <Container>
+            <div style={{display:"flex"}}>
                 <Row>
-                    <Col lg={true} style={{
+                    <Col style={{
                         backgroundColor: "lightblue",
                         margin: 20
                     }}>Значимость этих проблем настолько очевидна,
@@ -16,7 +15,7 @@ export default class Graphs extends React.Component {
                         процесс внедрения и модернизации модели развития. Не следует, однако забывать, что укрепление и
                         развитие структуры влечет за собой процесс внедрения и модернизации модели развития. Товарищи!
                         новая модель организационной деятельности</Col>
-                    <Col lg={true} style={{
+                    <Col style={{
                         backgroundColor: "lightgreen",
                         margin: 20
                     }}>С другой стороны новая модель организационной
@@ -25,7 +24,7 @@ export default class Graphs extends React.Component {
                         внедрения и модернизации дальнейших направлений развития. С другой стороны реализация намеченных
                         плановых заданий представляет собой интересный эксперимент проверки соответствующий условий
                         активизации. Задача организации</Col>
-                    <Col lg={true} style={{
+                    <Col style={{
                         backgroundColor: "lightgreen",
                         margin: 20
                     }}>С другой стороны новая модель организационной
@@ -36,7 +35,7 @@ export default class Graphs extends React.Component {
                         активизации. Задача организации</Col>
                 </Row>
                 <Row>
-                    <Col lg={true} style={{
+                    <Col style={{
                         backgroundColor: "lightblue",
                         margin: 20
                     }}>Таким образом консультация с широким активом
@@ -44,7 +43,7 @@ export default class Graphs extends React.Component {
                         намеченных плановых заданий позволяет оценить значение дальнейших направлений развития. Задача
                         организации, в особенности же дальнейшее развитие различных форм деятельности способствует
                         подготовки и реализации систем массового участия. </Col>
-                    <Col lg={true} style={{
+                    <Col style={{
                         backgroundColor: "lightgreen",
                         margin: 20
                     }}>Товарищи! сложившаяся структура организации
@@ -53,7 +52,7 @@ export default class Graphs extends React.Component {
                         формированию позиции представляет собой интересный эксперимент проверки систем массового
                         участия. Значимость этих проблем настолько очевидна, что сложившаяся структура организации
                         требуют от нас анализа существенных </Col>
-                    <Col lg={true} style={{
+                    <Col style={{
                         backgroundColor: "lightblue",
                         margin: 20
                     }}>Не следует, однако забывать, что новая модель
@@ -63,7 +62,7 @@ export default class Graphs extends React.Component {
                         организации способствует подготовки и реализации позиций, занимаемых участниками в отношении
                         поставленных задач.</Col>
                 </Row>
-            </Container>)
+            </div>)
 
     }
 }

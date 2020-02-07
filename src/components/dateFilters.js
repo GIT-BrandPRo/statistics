@@ -21,6 +21,7 @@ export function Yesterday() {
 
 export function Week() {
     return (
+
         <div>
           <h2>Week</h2>
         </div>

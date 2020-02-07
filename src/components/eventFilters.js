@@ -1,9 +1,6 @@
 
 import React from "react";
 import Graphs from "./Graphs";
-import {Route, Switch} from "react-router";
-import {Today,Yesterday,Week,Month,Year,Quarter} from "./dateFilters";
-
    export function All() {
         return (
           <div>

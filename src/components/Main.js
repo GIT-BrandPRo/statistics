@@ -1,60 +1,35 @@
-import {Button, Nav} from "react-bootstrap";
+import {DatePicker, Button} from 'antd';
 import {
     BrowserRouter as Router,
-    Switch, Route,
-    Link
+    Switch, Route
 } from "react-router-dom";
 import {All, Events, AllEvents} from "./eventFilters";
 import {Today, Yesterday, Week, Month, Year, Quarter} from "./dateFilters";
 import React, {Component} from 'react';
-import DatePicker from "../containers/DatePicker";
-import Graphs from "./Graphs";
+
 
 export default class Main extends Component {
-
-    state = {}
 
     render() {
         return (
             <Router>
                 <div>
-                    <Nav>
-                        <Nav.Item>
-                            <Nav.Link href="/All">ОБЩАЯ</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/Events">СОБЫТИЯ</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/AllEvents">ПО ВСЕМ СОБЫТИЯМ</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-
-                    <Nav variant="pills" defaultActiveKey="/">
-                        <Nav.Item>
-                            <Nav.Link href="/Today">Сегодня</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/Yesterday">Вчера</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/Week">Неделя</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/Month">Месяц</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/Year">Год</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/Quarter">Квартал</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-
+                    <Button style={{margin: 10}} href="/All">ОБЩАЯ</Button>
+                    <Button style={{margin: 10}} href="/Events">СОБЫТИЯ</Button>
+                    <Button style={{margin: 10}} href="/AllEvents">ПО ВСЕМ СОБЫТИЯМ</Button>
                     <div>
+                        <Button style={{margin: 10}} href="/Today">СЕГОДНЯ</Button>
+                        <Button style={{margin: 10}} href="/Yesterday">ВЧЕРА</Button>
+                        <Button style={{margin: 10}} href="/Week">НЕДЕЛЯ</Button>
+                        <Button style={{margin: 10}} href="/Month">МЕСЯЦ</Button>
+                        <Button style={{margin: 10}} href="/Year">ГОД</Button>
+                        <Button style={{margin: 10}} href="/Quarter">КВАРТАЛ</Button>
+                    </div>
+                    <div style={{display: "inline-flex"}}>
                         <DatePicker/>
-                        <Button variant="link">Reload</Button>
-                        <Button variant="link">Export XLS</Button>
+                        {window.location.href==="http://localhost:3000/Week" ? <DatePicker/> : null}
+                        <Button style={{margin: 10}} variant="link">Reload</Button>
+                        <Button style={{margin: 10}} variant="link">Export XLS</Button>
                     </div>
 
                     <Switch>
@@ -87,7 +62,6 @@ export default class Main extends Component {
                             <Quarter/>
                         </Route>
                     </Switch>
-
                 </div>
             </Router>
         )
