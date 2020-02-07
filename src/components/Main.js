@@ -1,74 +1,140 @@
+import React from "react";
 import {DatePicker, Button} from 'antd';
-import {
-    BrowserRouter as Router,
-    Switch, Route
-} from "react-router-dom";
-import {All, Events, AllEvents} from "./eventFilters";
-import {Today, Yesterday, Week, Month, Year, Quarter} from "./dateFilters";
-import React, {Component} from 'react';
+import 'antd/dist/antd.css';
+import moment from 'moment';
+import {useState, useEffect} from 'react';
+import axios from 'axios';
+import {Menu, Dropdown, Icon} from 'antd';
+import {Row, Col} from 'antd';
+import {Line} from 'react-chartjs-2';
 
-const {MonthPicker, RangePicker, WeekPicker} = DatePicker;
+function Main() {
 
-function onChange(date, dateString) {
-    console.log(date, dateString);
-}
+    const dateFormat = 'YYYY/MM/DD';
+    const monthFormat = 'YYYY/MM';
+    const {MonthPicker, RangePicker, WeekPicker} = DatePicker;
 
-export default class Main extends Component {
-    render() {
-        return (
-            <Router>
-                <div>
-                    <Button style={{margin: 10}} href="/All">ОБЩАЯ</Button>
-                    <Button style={{margin: 10}} href="/Events">СОБЫТИЯ</Button>
-                    <Button style={{margin: 10}} href="/AllEvents">ПО ВСЕМ СОБЫТИЯМ</Button>
-                    <div>
-                        <Button style={{margin: 10}} href="/Today">СЕГОДНЯ</Button>
-                        <Button style={{margin: 10}} href="/Yesterday">ВЧЕРА</Button>
-                        <Button style={{margin: 10}} href="/Week">НЕДЕЛЯ</Button>
-                        <Button style={{margin: 10}} href="/Month">МЕСЯЦ</Button>
-                        <Button style={{margin: 10}} href="/Year">ГОД</Button>
-                        <Button style={{margin: 10}} href="/Quarter">КВАРТАЛ</Button>
-                    </div>
-                    <div style={{display: "inline-flex"}}>
+// const todayPickerDef = moment(new Date(), dateFormat)
 
-                        {window.location.href === "http://localhost:3000/Week" ? <RangePicker onChange={onChange}/> :
-                            <DatePicker/>}
-                        <Button style={{margin: 10}} variant="link">Reload</Button>
-                        <Button style={{margin: 10}} variant="link">Export XLS</Button>
-                    </div>
-
-                    <Switch>
-                        <Route exact path="/All">
-                            <All/>
-                        </Route>
-                        <Route exact path="/Events">
-                            <Events/>
-                        </Route>
-                        <Route exact path="/AllEvents">
-                            <AllEvents/>
-                        </Route>
-
-                        <Route exact path="/Today">
-                            <Today/>
-                        </Route>
-                        <Route exact path="/Yesterday">
-                            <Yesterday/>
-                        </Route>
-                        <Route exact path="/Week">
-                            <Week/>
-                        </Route>
-                        <Route exact path="/Month">
-                            <Month/>
-                        </Route>
-                        <Route exact path="/Year">
-                            <Year/>
-                        </Route>
-                        <Route exact path="/Quarter">
-                            <Quarter/>
-                        </Route>
-                    </Switch>
-                </div>
-            </Router>
-        )
+    const onChange = (date, dateString) => {
+        console.log(date, dateString);
     }
+
+    const [data, setData] = useState([]);
+    const [actionType, setActionType] = useState("Зашел в алгоритмы");
+    const [allCount, setAllCount] = useState('');
+    const [count, setCount] = useState([]);
+    const [time, setTime] = useState([]);
+    const [dataUrl, setDataUrl] = useState('data.json');
+    const graphData = {
+        labels: time,
+        datasets: [
+            {
+                label: '',
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: 'rgba(75,192,192,0.4)',
+                borderColor: 'rgba(75,192,192,1)',
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: 'rgba(75,192,192,1)',
+                pointBackgroundColor: '#fff',
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+                pointHoverBorderColor: 'rgba(220,220,220,1)',
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data: count
+            }
+        ]
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await axios.get(dataUrl);
+            setData(res.data);
+        };
+        fetchData();
+
+    }, [dataUrl]);
+
+    const todayHandler = (type) => {
+        console.log(type)
+        setCount(data[type === "Зашел в алгоритмы" ? 0 : 1].data.map(item => item.count))
+        setTime(data[type === "Зашел в алгоритмы" ? 0 : 1].data.map(item => item.time))
+    }
+
+    const allCountHandler = (type) => {
+        setAllCount(data[type === "Зашел в алгоритмы" ? 0 : 1].count)
+    }
+
+    const actionTypeHandler = (name) => {
+        setActionType(name)
+    }
+    const actionsDropdown = (
+        <Menu>
+            {data.map(item =>
+                <Menu.Item onClick={() => {
+                    actionTypeHandler(item.name)
+                    todayHandler(actionType)
+                    allCountHandler(actionType)
+                }}>
+                    <a href="#">
+                        {item.name}
+                    </a></Menu.Item>)}
+        </Menu>
+    );
+
+
+    return (
+        <div>
+            <div style={{margin: 10}}>
+                <Button>ОБЩАЯ</Button>
+                <Button>СОБЫТИЯ</Button>
+                <Button>ПО ВСЕМ СОБЫТИЯМ</Button>
+                <hr/>
+            </div>
+            <div>
+                <Button>СЕГОДНЯ</Button>
+
+                <Button>ВЧЕРА</Button>
+
+                <Button>НЕДЕЛЯ</Button>
+
+                <Button>МЕСЯЦ</Button>
+
+                <Button>ГОД</Button>
+
+                <Button>КВАРТАЛ</Button>
+            </div>
+            <hr/>
+            <div style={{margin: 10}}>
+                <Dropdown.Button overlay={actionsDropdown}>
+                    <a className="ant-dropdown-link" href="#">
+                        Actions
+                    </a>
+                </Dropdown.Button>
+                <DatePicker style={{margin: 10}} defaultValue={moment(new Date(), dateFormat)} format={dateFormat}/>
+            </div>
+            <div style={{
+                display: "flex",
+                justifyContent: "center"
+            }}>
+                <div style={{flex: 1, margin: 10}}>
+                    <Row>
+                        <Col>{allCount}</Col>
+                    </Row>
+                </div>
+                <div style={{flex: 3}}>
+                    <Line data={graphData}/>
+                </div>
+            </div>
+        </div>
+    );
 }
+
+export default Main
